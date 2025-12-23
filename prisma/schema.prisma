@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// 유저(편지함 주인) 테이블
+model User {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique // 이 필드를 참조하기 위해 반드시 @unique가 필요합니다.
+  name      String   
+  secretKey String   @default(uuid())
+  createdAt DateTime @default(now())
+  
+  letters   Letter[]
+}
+
+// 편지 테이블
+model Letter {
+  id        Int      @id @default(autoincrement())
+  content   String   @db.Text
+  keyword   String   
+  song      String?  
+  createdAt DateTime @default(now())
+
+  // [수정됨] userId 대신 userSlug를 사용하여 User의 slug와 연결합니다.
+  user      User     @relation(fields: [userSlug], references: [slug], onDelete: Cascade)
+  userSlug  String
+}

@@ -1,27 +1,54 @@
 // app/create/page.tsx
 "use client";
-import { useState } from "react";
-import Snowglobe from "../components/snowglobe";
+import { useEffect, useState } from "react";
+import { registerUser } from "../actions";
 import MusicPlayer from "../components/musicplayer";
+import Snowglobe from "../components/snowglobe";
 
 export default function CreatePage() {
   const [name, setName] = useState("");
   const [slug, setSlug] = useState("");
+  const [isPending, setIsPending] = useState(false);
+  const generateKey = () => {
+    if (
+      typeof window !== "undefined" &&
+      window.crypto &&
+      window.crypto.randomUUID
+    ) {
+      return window.crypto.randomUUID();
+    }
+    // 아주 만약의 경우를 대비한 대체 로직 (혹은 그냥 랜덤 문자열)
+    return Math.random().toString(36).substring(2, 15);
+  };
 
-  const handleCreate = () => {
+  // 사용 예시
+  const [secretKey, setSecretKey] = useState("");
+
+  useEffect(() => {
+    setSecretKey(generateKey());
+  }, []);
+
+  const handleCreate = async () => {
     if (!name.trim()) {
       alert("닉네임을 입력해 주세요!");
       return;
     }
+
+    setIsPending(true);
+
+    // 1. 슬러그 생성 로직
     const encodedName = btoa(encodeURIComponent(name.trim()));
-
-    // 2. 뒤에 붙는 랜덤값 (중복 방지용)
     const randomSuffix = Math.random().toString(36).slice(2, 5);
-
-    // 3. 이제 slug는 "7ZmN6ri464+Z-abc" 같은 형태가 됩니다.
     const newSlug = `${encodedName}-${randomSuffix}`;
 
-    setSlug(newSlug);
+    // 2. registerUser API 호출
+    const result = await registerUser(name.trim(), newSlug, secretKey);
+    if (result.success) {
+      setSlug(newSlug);
+    } else {
+      alert(result.error);
+    }
+    setIsPending(false);
   };
 
   return (
@@ -36,7 +63,7 @@ export default function CreatePage() {
             <br />
           </h1>
           <p className="text-blue-100 text-xs opacity-90 leading-relaxed mt-2">
-            이브에 보낸 편지는
+            이브에 편지를 보내면
             <br />
             크리스마스 당일에 도착합니다!
           </p>
@@ -63,12 +90,50 @@ export default function CreatePage() {
           <h2 className="text-3xl font-bold text-white mb-4 drop-shadow-lg">
             ✨ 링크 생성 완료!
           </h2>
-          <div className="bg-white/10 backdrop-blur-xl shadow-2xl rounded-2xl p-6 border border-white/20 break-all mb-6">
-            <span className="font-mono text-yellow-200 text-sm">
-              {typeof window !== "undefined" &&
-                `${window.location.origin}/${slug}`}
-            </span>
+          <div className="text-white text-xs mb-4">
+            링크를 잘 보관해주세요! 잃어버리면 찾을 수 없어요...
           </div>
+          <div className="flex flex-col w-full gap-6">
+            {/* 1. 친구용 링크 */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 ml-1">
+                <span className="text-xl">🎁</span>
+                <span className="text-sm font-bold text-white/90">
+                  친구들에게 보낼 링크
+                </span>
+              </div>
+              <div className="bg-white/10 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/20 break-all relative group">
+                <span className="font-mono text-yellow-200 text-sm">
+                  {typeof window !== "undefined" &&
+                    `${window.location.origin}/${slug}`}
+                </span>
+                {/* 팁: 복사 버튼 같은 걸 나중에 추가해도 좋아요! */}
+              </div>
+              <p className="text-[11px] text-white/50 ml-1">
+                * 이 링크를 친구들에게 공유하면 편지를 받을 수 있어요.
+              </p>
+            </div>
+
+            {/* 2. 내 편지함 확인용 링크 */}
+            <div className="space-y-2">
+              <div className="flex items-center gap-2 ml-1">
+                <span className="text-xl">🔒</span>
+                <span className="text-sm font-bold text-white/90">
+                  내 스노우볼 링크
+                </span>
+              </div>
+              <div className="bg-white/5 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/10 break-all border-dashed">
+                <span className="font-mono text-blue-200 text-sm">
+                  {typeof window !== "undefined" &&
+                    `${window.location.origin}/my/${slug}?key=${secretKey}`}
+                </span>
+              </div>
+              <p className="text-[11px] text-red-200/60 ml-1 mb-4">
+                * 주의: 이 링크는 친구들에게 공유하지 마세요!
+              </p>
+            </div>
+          </div>
+
           <button
             onClick={() => {
               navigator.clipboard.writeText(
@@ -76,16 +141,25 @@ export default function CreatePage() {
               );
               alert("링크가 복사되었습니다!");
             }}
-            className="py-4 px-8 bg-green-600 hover:bg-green-500 text-white font-bold rounded-2xl shadow-xl transition-all"
+            className="py-4 px-5 bg-transparent border-4 border-[#347433] text-white font-bold rounded-2xl shadow-xl transition-all"
           >
-            링크 복사하기 📋
+            친구용 링크 복사하기 📋
           </button>
+          <a
+            href={`/my/${slug}?key=${secretKey}`}
+            className="py-6 px-6 text-white bg-[#347433] font-bold rounded-2xl shadow-xl transition-all ml-4"
+          >
+            내 스노우볼 보러가기
+          </a>
         </div>
       )}
+      <p className="fixed bottom-6 text-white/40 text-[10px] tracking-widest uppercase font-bold">
+        Merry Christmas & Happy New Year
+      </p>
       {/* 개발자 문의 정보 - 우측 하단 고정 */}
-    <p className="fixed bottom-6 right-6 text-xs text-white/50 hover:text-white/80 transition-colors z-50">
-      개발자에게 문의하기 : @wjeong_0411
-    </p>
+      <p className="fixed bottom-6 right-6 text-xs text-white/50 hover:text-white/80 transition-colors z-50">
+        개발자에게 문의하기 : @wjeong_0411
+      </p>
     </div>
   );
 }
