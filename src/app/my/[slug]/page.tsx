@@ -13,11 +13,24 @@ const nickNames = [
   "산타",
   "스노우맨",
   "선물상자",
-  "체리",
   "딸기케이크",
   "마카롱",
   "럭키",
   "테디베어",
+  "솜사탕",
+  "요정",
+  "핫초코",
+  "붕어빵",
+  "군고구마",
+  "귤",
+  "오로라",
+  "반짝이",
+  "솔방울",
+  "얼음꽃",
+  "달빛",
+  "눈꽃",
+  "구름",
+  "목도리",
 ];
 
 export default function MyBoxPage({ params }: any) {
@@ -45,7 +58,7 @@ export default function MyBoxPage({ params }: any) {
   if (!data)
     return (
       <div className="min-h-screen bg-[#850E35] flex items-center justify-center text-white">
-        편지함 여는 중... ❄️
+        스노우볼 가져오는 중... ❄️
       </div>
     );
 

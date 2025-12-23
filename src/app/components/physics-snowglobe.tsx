@@ -109,7 +109,7 @@ export default function PhysicsSnowglobe({ count }: { count: number }) {
 }
 
 const createEmojiTexture = (emoji: string) => {
-  const size = 64; // 해상도를 위해 조금 크게 잡습니다.
+  const size = 45;
   const canvas = document.createElement("canvas");
   canvas.width = size;
   canvas.height = size;
@@ -127,7 +127,7 @@ const createEmojiTexture = (emoji: string) => {
   // 3. 폰트 설정 (중요: 컬러 이모지를 지원하는 폰트를 우선순위로 배치)
   ctx.font = `${
     size * 0.8
-  }px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", sans-serif`;
+  }px sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", sans-serif`;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
 

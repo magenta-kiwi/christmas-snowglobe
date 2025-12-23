@@ -6,7 +6,33 @@ import MusicPlayer from "../components/musicplayer";
 import Snowfall from "../components/snow";
 import Snowglobe from "../components/snowglobe";
 
-const KEYWORDS = ["사랑", "산타", "추억", "겨울밤", "하트", "양말", "눈송이"];
+const KEYWORDS = [
+  "사랑",
+  "산타",
+  "추억",
+  "겨울밤",
+  "설렘",
+  "루돌프",
+  "눈송이",
+  "캐롤",
+  "첫눈",
+  "좋아해",
+  "비밀",
+  "붕어빵",
+  "담요",
+  "따뜻해",
+  "우정",
+  "약속",
+  "소중해",
+  "진심",
+  "기적",
+  "마법",
+  "고마워",
+  "소원",
+  "함께",
+  "첫인상",
+  "첫만남",
+];
 
 const Ribbon = () => (
   <div className="absolute -top-6 left-1/2 -translate-x-1/2 z-20 w-full max-w-[80%]">
@@ -91,11 +117,11 @@ export default function LetterWritePage({ params }: any) {
             <div className="bg-[#FDFDFD] rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.3)] overflow-hidden">
               {/* 카드 헤더 */}
               <div className="bg-red-50/50 p-8 pb-4 border-b border-red-100/50">
-                <h1 className="text-2xl font-black text-[#1F4529] tracking-tight">
+                <h1 className="text-xl font-black text-[#1F4529] tracking-tight">
                   Dear. {decodedName}
                 </h1>
-                <p className="mt-2 text-sm text-red-700/60 font-medium">
-                  익명으로 편지가 전달될 거에요!
+                <p className="mt-2 text-xs text-red-700/60 font-medium">
+                  익명으로 편지가 전달돼요! (개발자도 몰라요)
                 </p>
               </div>
 
@@ -179,9 +205,9 @@ export default function LetterWritePage({ params }: any) {
                 </p>
                 <a
                   href="/create"
-                  className="mt-8 px-8 py-3 bg-white text-[#850E35] rounded-full text-sm font-black hover:bg-red-50 transition-colors shadow-xl"
+                  className="mt-6 px-6 py-3 bg-white text-[#850E35] rounded-full text-sm font-black hover:bg-red-50 transition-colors shadow-xl"
                 >
-                  나도 편지함 만들기 🌟
+                  나도 스노우볼 만들기 🌟
                 </a>
               </div>
             </Snowglobe>
