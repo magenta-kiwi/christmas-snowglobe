@@ -78,7 +78,7 @@ export async function getLetters(slug: string, key: string) {
       return { success: false, error: "권한이 없습니다." };
     }
 
-    const christmasDate = new Date("2025-12-24T00:00:00+09:00");
+    const christmasDate = new Date("2025-12-25T00:00:00+09:00");
     const now = new Date();
     const isLocked = now < christmasDate;
 

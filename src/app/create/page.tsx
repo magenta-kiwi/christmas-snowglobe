@@ -37,7 +37,8 @@ export default function CreatePage() {
     setIsPending(true);
 
     // 1. 슬러그 생성 로직
-    const encodedName = btoa(encodeURIComponent(name.trim()));
+    const rawEncodedName = btoa(encodeURIComponent(name.trim()));
+    const encodedName = rawEncodedName.replace(/=/g, "");
     const randomSuffix = Math.random().toString(36).slice(2, 5);
     const newSlug = `${encodedName}-${randomSuffix}`;
 
