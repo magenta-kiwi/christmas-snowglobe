@@ -95,7 +95,7 @@ export default function MyBoxPage({ params }: any) {
             return (
               <div
                 key={i}
-                className={`relative bg-[#F4F4F4] rounded-[2.5rem] p-8 shadow-2xl border-b-8 border-red-100 transform transition-transform hover:scale-[1.02] ${rotation}`}
+                className={`relative bg-white rounded-[2.5rem] p-8 shadow-2xl border-b-8 border-red-100 transform transition-transform hover:scale-[1.02] ${rotation}`}
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 {/* 장식용 마스킹 테이프 느낌 */}
@@ -154,9 +154,6 @@ export default function MyBoxPage({ params }: any) {
           })}
         </div>
       )}
-      <p className="fixed bottom-6 text-white/40 text-[10px] tracking-widest uppercase font-bold">
-        Merry Christmas & Happy New Year
-      </p>
       <p className="fixed bottom-6 right-6 text-xs text-white/50 hover:text-white/80 transition-colors z-50">
         개발자에게 문의하기 : @wjeong_0411
       </p>

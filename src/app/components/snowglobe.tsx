@@ -52,7 +52,7 @@ export default function Snowglobe({ children }: SnowglobeProps) {
             // 1. 전체 개수를 기준으로 각도 계산 (예: 8개면 -35도 ~ +35도 사이로 배치)
             const totalCount = DECORATIONS.length;
             // 중앙에서부터 양쪽으로 퍼지도록 각도 설정 (간격 10도)
-            const rotateAngle = (totalCount-i / 2 + 0.5) * 29;
+            const rotateAngle = (totalCount - i / 2 + 0.5) * 29;
 
             return (
               <span

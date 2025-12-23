@@ -189,9 +189,6 @@ export default function LetterWritePage({ params }: any) {
         )}
       </AnimatePresence>
 
-      <p className="fixed bottom-6 text-white/40 text-[10px] tracking-widest uppercase font-bold">
-        Merry Christmas & Happy New Year
-      </p>
       <p className="fixed bottom-6 right-6 text-xs text-white/50 hover:text-white/80 transition-colors z-50">
         개발자에게 문의하기 : @wjeong_0411
       </p>

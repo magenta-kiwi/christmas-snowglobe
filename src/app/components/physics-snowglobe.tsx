@@ -108,17 +108,31 @@ export default function PhysicsSnowglobe({ count }: { count: number }) {
   return <div ref={sceneRef} className="relative w-[300px] h-[300px]" />;
 }
 
-// 이모지를 이미지 텍스트로 변환하는 헬퍼 함수
-function createEmojiTexture(emoji: string) {
+const createEmojiTexture = (emoji: string) => {
+  const size = 64; // 해상도를 위해 조금 크게 잡습니다.
   const canvas = document.createElement("canvas");
-  canvas.width = 64;
-  canvas.height = 64;
+  canvas.width = size;
+  canvas.height = size;
   const ctx = canvas.getContext("2d");
-  if (ctx) {
-    ctx.font = "40px serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(emoji, 32, 32);
-  }
-  return canvas.toDataURL();
-}
+
+  if (!ctx) return "";
+
+  // 1. 배경을 투명하게 명시적으로 설정
+  ctx.clearRect(0, 0, size, size);
+
+  // 2. 다크모드 영향 방지: 텍스트 채우기 색상을 투명하게 혹은 영향 없게 설정
+  // 이모지는 자체 색상을 가지고 있지만, 일부 브라우저는 fillStyle의 영향을 받습니다.
+  ctx.fillStyle = "white";
+
+  // 3. 폰트 설정 (중요: 컬러 이모지를 지원하는 폰트를 우선순위로 배치)
+  ctx.font = `${
+    size * 0.8
+  }px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", "Segoe UI Symbol", sans-serif`;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  // 4. 이모지 그리기
+  ctx.fillText(emoji, size / 2, size / 2 + 5);
+
+  return canvas.toDataURL(); // 이 데이터가 Matter.js의 texture로 들어갑니다.
+};

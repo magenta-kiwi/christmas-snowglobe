@@ -102,7 +102,15 @@ export default function CreatePage() {
                   친구들에게 보낼 링크
                 </span>
               </div>
-              <div className="bg-white/10 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/20 break-all relative group">
+              <div
+                className="bg-white/10 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/20 break-all relative group"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `${window.location.origin}/${slug}`
+                  );
+                  alert("링크가 복사되었습니다!");
+                }}
+              >
                 <span className="font-mono text-yellow-200 text-sm">
                   {typeof window !== "undefined" &&
                     `${window.location.origin}/${slug}`}
@@ -122,40 +130,34 @@ export default function CreatePage() {
                   내 스노우볼 링크
                 </span>
               </div>
-              <div className="bg-white/5 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/10 break-all border-dashed">
+              <div
+                className="bg-white/5 backdrop-blur-xl shadow-2xl rounded-2xl p-5 border border-white/10 break-all border-dashed"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `${window.location.origin}/my/${slug}?key=${secretKey}`
+                  );
+                  alert("링크가 복사되었습니다!");
+                }}
+              >
                 <span className="font-mono text-blue-200 text-sm">
                   {typeof window !== "undefined" &&
                     `${window.location.origin}/my/${slug}?key=${secretKey}`}
                 </span>
               </div>
-              <p className="text-[11px] text-red-200/60 ml-1 mb-4">
+              <p className="text-[11px] text-red-200/60 ml-1 mb-8">
                 * 주의: 이 링크는 친구들에게 공유하지 마세요!
               </p>
             </div>
           </div>
 
-          <button
-            onClick={() => {
-              navigator.clipboard.writeText(
-                `${window.location.origin}/${slug}`
-              );
-              alert("링크가 복사되었습니다!");
-            }}
-            className="py-4 px-5 bg-transparent border-4 border-[#347433] text-white font-bold rounded-2xl shadow-xl transition-all"
-          >
-            친구용 링크 복사하기 📋
-          </button>
           <a
             href={`/my/${slug}?key=${secretKey}`}
-            className="py-6 px-6 text-white bg-[#347433] font-bold rounded-2xl shadow-xl transition-all ml-4"
+            className="py-6 px-6 text-white bg-[#347433] font-bold rounded-2xl shadow-xl transition-all "
           >
             내 스노우볼 보러가기
           </a>
         </div>
       )}
-      <p className="fixed bottom-6 text-white/40 text-[10px] tracking-widest uppercase font-bold">
-        Merry Christmas & Happy New Year
-      </p>
       {/* 개발자 문의 정보 - 우측 하단 고정 */}
       <p className="fixed bottom-6 right-6 text-xs text-white/50 hover:text-white/80 transition-colors z-50">
         개발자에게 문의하기 : @wjeong_0411
