@@ -66,7 +66,7 @@ export default function CreatePage() {
           <p className="text-blue-100 text-xs opacity-90 leading-relaxed mt-2">
             이브에 편지를 보내면
             <br />
-            크리스마스 당일에 도착합니다!
+            크리스마스 당일에 도착해요!
           </p>
 
           <div className="space-y-3 pt-2">

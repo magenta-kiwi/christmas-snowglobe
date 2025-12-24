@@ -12,14 +12,14 @@ export default function Snowfall({ mode = "fullscreen" }: SnowfallProps) {
 
   useEffect(() => {
     // 스노우볼 안이면 눈송이 개수를 조금 줄여서 자연스럽게 (예: 30개)
-    const count = mode === "contained" ? 100 : 200;
+    const count = mode === "contained" ? 100 : 180;
 
     const newFlakes = Array.from({ length: count }).map((_, i) => ({
       id: i,
       left: Math.random() * 100,
       delay: Math.random() * 20, // 딜레이를 길게 주어 끊김 없이 내리게 함
       duration: 15 + Math.random() * 15, // 속도 다양화
-      size: mode === "contained" ? Math.random() * 5 : Math.random() * 15, // 스노우볼 안은 조금 작게
+      size: mode === "contained" ? Math.random() * 5 : Math.random() * 9, // 스노우볼 안은 조금 작게
       opacity: 0.3 + Math.random() * 0.5,
     }));
     setFlakes(newFlakes);

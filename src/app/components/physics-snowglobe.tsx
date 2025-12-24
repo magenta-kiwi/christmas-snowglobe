@@ -60,7 +60,7 @@ export default function PhysicsSnowglobe({ count }: { count: number }) {
     const emojis = Array.from({ length: Math.min(count, 30) }).map((_, i) => {
       // 이제 천장이 막혔으므로, 구슬 밖이 아니라 구슬 안쪽 상단(y: 50~100)에서 생성해야 합니다.
       const x = 170 + (Math.random() - 0.5) * 20;
-      const y = 150 + i * -10; // 구슬 내부 상단에서 차례대로 떨어지게 설정
+      const y = 160 + i * -5; // 구슬 내부 상단에서 차례대로 떨어지게 설정
 
       const body = Matter.Bodies.circle(x, y, 15, {
         restitution: 0.3, // 탄성 (통통 튀는 정도)
