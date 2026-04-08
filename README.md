@@ -45,7 +45,8 @@ npm run dev
 * ⚛️ Next.js (App Router)
 * 🎨 Tailwind CSS
 * 🔤 next/font
-* 🗄️ Supabase server 사용하였음
+* 🗄️ Supabase database
+* 🗄️ Vercel deployment
 
 ---
 
