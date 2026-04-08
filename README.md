@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎄 Christmas Snowglobe
 
-## Getting Started
+> 크리스마스에 받는 익명 편지 💌
 
-First, run the development server:
+링크 하나로 받는 친구들의 따뜻한 크리스마스 메시지!
+
+---
+
+## 주요 기능
+
+* 💌 **익명 편지 보내기**
+
+  * 내 링크를 공유하면 누구나 편지를 보낼 수 있어요
+* 🎁 **추천 키워드**
+
+  * 뭐라고 쓸지 고민될때? 추천 키워드를 포함해서 작성해봐요
+* 🎵 **크리스마스 플레이리스트**
+
+  * 편지를 쓰는 동안 크리스마스 배경음악이 흘러나와요
+* 🎄 **나만의 스노우볼 편지함**
+
+  * 나만의 스노우볼 링크를 12월 25일 자정에 열면 친구들의 메시지를 읽을 수 있어요
+* ❄️ **크리스마스 감성 UI**
+
+  * 눈 내리는 애니메이션과 스노우볼 디자인으로 감성을 끌어올려요
+
+---
+
+## 실행 방법
+
+프로젝트를 클론한 후 아래 명령어 실행:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+브라우저에서 확인:
+👉 http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 기술 스택
 
-## Learn More
+* ⚛️ Next.js (App Router)
+* 🎨 Tailwind CSS
+* 🔤 next/font
+* 🗄️ Supabase server 사용하였음
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 프로젝트 구조
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+app/
+ ├── create/        # 편지함 생성
+ ├── [slug]/        # (친구가 나에게) 편지 작성
+ ├── my/[slug]/     # (나만의) 편지함 보기
+ └── globals.css    # 스타일
+```
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 제작자의 한마디
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+여러분의 크리스마스에 따뜻한 교류가 있기를 바라요.
+
+
+크리스마스에
+조금 더 특별한 메시지를 주고받을 수 있도록 🎁
+
+---
+
+## 🧑‍💻 개발자
+
+* 👤 장우정 / Jang Woojeong
+* 💻 한양대학교 컴퓨터소프트웨어학부 재학 / Hanyang University, Seoul
+
+---
+
+## 📜 License
+
+MIT License
